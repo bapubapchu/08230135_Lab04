@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Learning Journey</title>
+</head>
+<body>
+  <h1>My Learning Journey</h1>
+  <p>Welcome to my personal learning journey page!</p>
+
+  <h2>My Learning Reflections:</h2>
+  <ul>
+    {% for journey in journeys %}
+      <li>
+        <strong>{{ journey.title }}</strong><br>
+        {{ journey.description }} <br>
+        <em>Date: {{ journey.date }}</em>
+      </li>
+    {% empty %}
+      <li>No learning journey entries yet.</li>
+    {% endfor %}
+  </ul>
+
+ 
+</body>
+</html>
