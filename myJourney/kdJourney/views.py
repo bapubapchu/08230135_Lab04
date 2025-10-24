@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from .models import LearningJourney
+from .models import AboutMe, LearningJourney
 
-# Create your views here.
 def index(request):
-    journeys = LearningJourney.objects.all()
+    # Get all learning journey entries, ordered by date
+    journeys = LearningJourney.objects.all().order_by('-date')
     return render(request, 'index.html', {'journeys': journeys})
-def about_me(request):
-    return render(request, 'aboutMe.html')
 
-    
+def aboutMe(request):
+    # Get all about me entries
+    about_infos = AboutMe.objects.all()
+    return render(request, 'aboutMe.html', {'about_infos': about_infos})

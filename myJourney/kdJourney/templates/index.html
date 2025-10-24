@@ -1,25 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Learning Journey</title>
+    <title>My Learning Journey</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
 </head>
 <body>
-  <h1>My Learning Journey</h1>
-  <p>Welcome to my personal learning journey page!</p>
+    <nav>
+        <a href="{% url 'index' %}">Home</a> |
+        <a href="{% url 'aboutMe' %}">About Me</a>
+    </nav>
 
-  <h2>My Learning Reflections:</h2>
-  <ul>
-    {% for journey in journeys %}
-      <li>
-        <strong>{{ journey.title }}</strong><br>
-        {{ journey.description }} <br>
-        <em>Date: {{ journey.date }}</em>
-      </li>
-    {% empty %}
-      <li>No learning journey entries yet.</li>
-    {% endfor %}
-  </ul>
+    <h1>My Learning Journey</h1>
+    <p>Welcome to my personal learning journey page!</p>
 
- 
+    <h2>My Learning Reflections:</h2>
+    {% if journeys %}
+        <ul>
+        {% for journey in journeys %}
+            <li>
+                <strong>{{ journey.title }}</strong><br>
+                {{ journey.description }}<br>
+                <em>Date: {{ journey.date|date:"Y-m-d" }}</em>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No journey entries available yet.</p>
+    {% endif %}
 </body>
 </html>

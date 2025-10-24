@@ -1,13 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-  <title>About Me</title>
+    <title>About Me</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
 </head>
 <body>
-  <h1>About Me</h1>
-  <p>Hello! I’m Karma Dema, a passionate learner exploring web development using Django.</p>
-  <p>I enjoy learning through projects that let me build something meaningful.</p>
-
-  
+    <h1>About Me</h1>
+    {% if about_infos %}
+        {% for info in about_infos %}
+            <div class="about-section">
+                <p>Hello! I'm {{ info.name }}, {{ info.bio }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No information available.</p>
+    {% endif %}
+    <a href="{% url 'index' %}">Back to Learning Journey</a>
 </body>
 </html>
